@@ -15,10 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome.index');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
-Route::view('/crud', 'crud');
+Route::view('/crud', 'crud')->name('crud.index')->middleware(['roles']);

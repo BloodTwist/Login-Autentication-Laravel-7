@@ -22,33 +22,6 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-       {{--  @auth
-            @if (Auth::user()->rol == 'admin')
-                <ul>
-                    <li>Crud users</li>
-                    <li>Crud Aprendices</li>
-                    <li>Crud Administradores</li>
-                </ul>
-            @endif
-            @if (Auth::user()->rol == 'aprendiz')
-                <ul>
-                    <li>Calificaciones</li>
-                    <li>Profesores</li>
-                    <li>Horario</li>
-                </ul>
-            @endif
-
-    @else
-        @if (Auth::user()->rol == 'usuario')
-                <ul>
-                    <li>Home</li>
-                    <li>About</li>
-                    <li>Contact</li>
-                </ul>
-            @endif
-    @endauth --}}
-
-
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -59,9 +32,20 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
+                    @auth
+                       <ul class="navbar-nav mr-auto">
+                           @if (Auth::user()->role->nombreRol == 'veterinario' || Auth::user()->role->nombreRol == 'admin')
+                               <li class="nav-item">
+                                    <a href="#" class="nav-link">Pacientes</a>
+                                </li>
+                           @endif
+                           @if (Auth::user()->role->nombreRol == 'empleado' || Auth::user()->role->nombreRol == 'admin')
+                               <li class="nav-item">
+                                    <a href="#" class="nav-link">Facturación</a>
+                                </li>
+                           @endif
+                        </ul>
+                    @endauth
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
