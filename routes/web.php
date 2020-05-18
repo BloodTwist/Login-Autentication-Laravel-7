@@ -22,3 +22,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 Route::view('/crud', 'crud')->name('crud.index')->middleware(['roles']);
+
+Route::get('/admin/admin', 'AdminController@index')->name('admin.index');
+Route::get('/veterinario/veterinario', 'VeterinarioController@index')->name('veterinario.index');
